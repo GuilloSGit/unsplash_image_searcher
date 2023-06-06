@@ -2,10 +2,11 @@ import axios from "axios";
 import { useEffect, useRef, useState, useCallback } from "react";
 import "./index.css";
 import { Form, Button } from "react-bootstrap";
+import RandomWords from "./Components/WordGenerator/RandomWords";
 
 const API_URL = "https://api.unsplash.com/search/photos";
 const API_KEY = import.meta.env.VITE_API_KEY;
-const IMAGES_PER_PAGE = 18;
+const IMAGES_PER_PAGE = 15;
 
 function App() {
   const searchInput = useRef(null);
@@ -51,9 +52,8 @@ function App() {
 
   return (
     <>
-      <header></header>
       <div className="container">
-        <h1 className="title">Image Searcher</h1>
+        <h1 className="title">Image Searcher 🔍</h1>
         <div className="search-section">
           <Form onSubmit={handleSearch}>
             <Form.Control
@@ -65,40 +65,20 @@ function App() {
           </Form>
         </div>
         {errorMessage && <p className="error-msg"> {errorMessage} </p>}
-        <div className="filters">
-          <div
-            className="button nature"
-            onClick={() => handleSelection("nature")}
-          >
-            Nature
-          </div>
-          <div
-            className="button birds"
-            onClick={() => handleSelection("birds")}
-          >
-            Birds
-          </div>
-          <div className="button cats" onClick={() => handleSelection("cats")}>
-            Cats
-          </div>
-          <div
-            className="button shoes"
-            onClick={() => handleSelection("shoes")}
-          >
-            Shoes
-          </div>
+        <div>
+          <RandomWords handleSelection={ handleSelection }/>
         </div>
-        <div className="images container">
+        <div className="container">
           <ul>
-          {images.map((image) => (
-            <li key={image.id}>
-              <img
-                src={image.urls.small}
-                alt={image.alt_description}
-                className="image"
-              />
-            </li>
-          ))}
+            {images.map((image) => (
+              <li key={image.id}>
+                <img
+                  src={image.urls.small}
+                  alt={image.alt_description}
+                  className="image"
+                />
+              </li>
+            ))}
           </ul>
         </div>
         <div className="buttons">
@@ -109,13 +89,6 @@ function App() {
             <Button onClick={() => setPage(page + 1)}>Next</Button>
           )}
         </div>
-        <footer>
-          <div>
-            Enim irure est aliquip deserunt voluptate quis sunt officia duis
-            dolore nostrud amet nulla. Voluptate ullamco nulla officia est ipsum
-            consectetur amet occaecat nostrud amet nulla commodo cillum laboris.
-          </div>
-        </footer>
       </div>
     </>
   );

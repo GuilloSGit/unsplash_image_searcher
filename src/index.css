@@ -1,22 +1,19 @@
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+  line-height: 1.1;
+  font-weight: 200;
   --default-spacing: 10px;
-  --default-margin: 1rem;
-  --medium-margin: 3rem;
-  --larger-margin: 5rem;
+  --default-margin: 5vh;
+  --medium-margin: 1rem;
+  --larger-margin: 3rem;
   --primary-color: #7676d7;
+  --secundary-color: #b7b7f3;
 }
 
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-}
-
-body {
-  color: var(--primary-color);
 }
 
 /* common css starts */
@@ -27,7 +24,7 @@ body {
   display: flex;
   justify-content: center;
   flex-direction: column;
-  min-height: 100vh;
+  min-height: 70vh;
 }
 
 .title {
@@ -52,6 +49,36 @@ body {
   box-shadow: none;
   outline: none;
   border: none;
+}
+
+.tags-text {
+  line-height: 2.5;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  color: grey;
+}
+
+.tags {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  margin: var(--medium-margin);
+  gap: 8px;
+}
+
+.tag {
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  cursor: pointer;
+  background-color: #fff;
+  border-radius: 15px;
+  border: 2px solid var(--primary-color);
+  padding: 0.3rem 0.5rem;
+  box-shadow: 2px 2px 0px #adaaaa;
+}
+
+.tag:hover {
+  background: linear-gradient(to left, var(--primary-color), var(--secundary-color));
+  color: #fff;
 }
 
 .error-msg {
@@ -88,7 +115,7 @@ body {
   justify-content: center;
   flex-wrap: wrap;
   align-items: center;
-  gap: 1rem;
+  gap: 5vh;
   margin-top: var(--default-margin);
 }
 
@@ -142,11 +169,20 @@ ul > li > img {
 /* images section ends */
 
 /* Responsive adjustments */
+@media (max-width: 768px) {
+  .images {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
 
 @media (max-width: 480px) {
   .search-section .search-input {
     width: 100%;
     min-width: unset;
     margin: 0 var(--default-margin);
+  }
+
+  .images {
+    object-fit: cover;
   }
 }
