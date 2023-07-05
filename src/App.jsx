@@ -68,6 +68,14 @@ function App() {
         <div>
           <RandomWords handleSelection={ handleSelection }/>
         </div>
+        <div className="buttons">
+          {page > 1 && (
+            <Button onClick={() => setPage(page - 1)}>Previous</Button>
+          )}
+          {page < totalPages && (
+            <Button onClick={() => setPage(page + 1)}>Next</Button>
+          )}
+        </div>
         <div className="container">
           <ul>
             {images.map((image) => (
